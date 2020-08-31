@@ -1,11 +1,8 @@
 name: Remote Dispatch Action Initiator
 
 on:
-  # Trigger the workflow on push,
+  # Trigger the workflow on pr closed,
   # but only for the master branch
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
@@ -16,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dispatch initiating repository event
-        env: 
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true
+        run: |
+          curl -X POST https://api.github.com/repos/s-ashwinkumar/repodispatch-sample-receiver/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.REPO_ACCESS_TOKEN }} \
+          --data '{"event_type": "update_packages"}'
