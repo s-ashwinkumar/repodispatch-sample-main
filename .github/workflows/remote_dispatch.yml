@@ -1,0 +1,17 @@
+name: Remote Dispatch Action Initiator
+
+on:
+  # Trigger the workflow on push,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+
+jobs:
+  receiver-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch initiating repository event
+        env: 
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
