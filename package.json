@@ -1,0 +1,19 @@
+{
+  "name": "repodispatch-sample-main",
+  "version": "0.0.0-calendar-version",
+  "description": "Repo for testing cross-repo dispatch actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-ashwinkumar/repodispatch-sample-main.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s-ashwinkumar/repodispatch-sample-main/issues"
+  },
+  "homepage": "https://github.com/s-ashwinkumar/repodispatch-sample-main#readme"
+}
