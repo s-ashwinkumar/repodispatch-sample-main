@@ -6,14 +6,14 @@ on:
   pull_request:
     branches:
       - master
-    types: [closed]      
+    types: [closed]
 
 jobs:
   receiver-update:
     runs-on: ubuntu-latest
     steps:
       - name: Dispatch initiating repository event
-        if: github.event.action == 'closed' && github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'remote_dispatch')
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'Update: receiver')
         run: |
           curl -X POST https://api.github.com/repos/s-ashwinkumar/repodispatch-sample-receiver/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
