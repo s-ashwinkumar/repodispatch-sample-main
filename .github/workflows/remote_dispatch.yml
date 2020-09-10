@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dispatch initiating repository event
-        if: github.event.action == 'closed' && github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'Update: receiver')
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, ${{ secrets.DISPATCH_TAG }})
         run: |
           curl -X POST https://api.github.com/repos/s-ashwinkumar/repodispatch-sample-receiver/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
